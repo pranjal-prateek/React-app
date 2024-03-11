@@ -1,8 +1,10 @@
 import logo from './logo.svg';
-import './App.css';
-import { useEffect, useState } from 'react';
-import ImageRenderer from './components/imageRenderer/ImageRenderer';
+import { lazy, useEffect, useState } from 'react';
+import { BrowserRouter as Router , Routes , Route , Link } from 'react-router-dom';
+// import ImageRenderer from './components/imageRenderer/ImageRenderer';
 import Login from './components/login/Login';
+const ImageRenderer =lazy(()=>import('./components/imageRenderer/ImageRenderer'))
+
 
 function App() {
   const [data, setData] = useState([]);
@@ -16,10 +18,12 @@ function App() {
     fetching()
   },[])
   return (
-    <div className="App">
-      <Login/>
-      {/* <ImageRenderer data={data}/> */}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/getImages" exact element={<ImageRenderer data={data}/>}/>
+        <Route path="/login" element={<Login/>}/>
+      </Routes>
+    </Router>
   );
 }
 

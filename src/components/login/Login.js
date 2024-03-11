@@ -1,17 +1,24 @@
 import React, { useState } from 'react'
 import './login.css'
+import { Navigate } from "react-router-dom";
+
 const Login = () => {
     const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('');
+    const [loaded,setLoaded] =useState(false)
 
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log('Logging in with:', username, password);
+    if(username==="pranjal" && password==="prateek"){
+        setLoaded(true)
+    }
+   
   };
+
   return (
     <div className="login-container">
-    <form onSubmit={handleLogin} className="login-form">
+        {loaded ?<Navigate to={'/getImages'}/> : <form onSubmit={handleLogin} className="login-form">
       <h2>Login</h2>
       <div className="form-group">
         <label htmlFor="username">Username</label>
@@ -36,7 +43,8 @@ const Login = () => {
         />
       </div>
       <button type="submit">Login</button>
-    </form>
+    </form>}
+   
   </div>
   )
 }

@@ -18,4 +18,16 @@ th,td{
 tr:nth-child(even) {
     background-color: #c3bebe;
   }
+.buttonContainer{
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
   
+button{
+    padding: 1px;
+    background-color: #000;
+    width: 90px;
+}

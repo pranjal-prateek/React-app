@@ -48,7 +48,7 @@ const ImageRenderer = ({data=[]}) => {
          })}
         </tbody>
       </table>
-   
+   <div className='buttonContainer'>
       <button onClick={handleDecrementPage} disabled={currentPage === 1}>
         prev page
       </button>
@@ -56,7 +56,7 @@ const ImageRenderer = ({data=[]}) => {
       <button onClick={handleIncrementPage} disabled={currentPage === totalPages}>
         next page
       </button>
-
+      </div>
     </div>
   )
 }
