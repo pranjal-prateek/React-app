@@ -27,8 +27,8 @@ const ImageRenderer = ({data=[]}) => {
     const endIndex = Math.min(startIndex + itemsPerpage, filteredData.length);
 
   return (
-    <div>
-      <h1>Image Renderer</h1>
+    <div className='container'>
+      {/* <h1>Image Renderer</h1>
       <input type="text" value={searchtext} onChange={(e)=>setSearchText(e.target.value)}/>
       <table>
         <thead>
@@ -56,6 +56,17 @@ const ImageRenderer = ({data=[]}) => {
       <button onClick={handleIncrementPage} disabled={currentPage === totalPages}>
         next page
       </button>
+      </div> */}
+
+      <div className='imageContainer'>
+        {filteredData.map((item,index)=>{
+            return (
+              <div key={index}>
+                <img src={item} alt="NOT AVAILABLE"></img>
+              </div>
+            )
+         })}
+
       </div>
     </div>
   )

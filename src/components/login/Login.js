@@ -1,16 +1,28 @@
-import React, { useState } from 'react'
+import React, { useReducer, useState } from 'react'
 import './login.css'
 import { Navigate } from "react-router-dom";
-
+const initialValue = {
+    username: '',
+    password: '',
+  };
+  
+const reducer =(state,action)=>{
+    switch (action.type) {
+        case "username": return {...state,username : action.payload}
+        case "password": return {...state,password : action.payload}
+        default:
+            break;
+    }
+}
 const Login = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+
+    const [state,dispatch] =useReducer(reducer,initialValue)
     const [loaded,setLoaded] =useState(false)
 
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if(username==="pranjal" && password==="prateek"){
+    if(state.username==="pranjal" &&state.password==="prateek"){
         setLoaded(true)
     }
    
@@ -26,8 +38,8 @@ const Login = () => {
           type="text"
           id="username"
           placeholder="Enter your username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={state.username}
+          onChange={(e) => dispatch({type:'username',payload:e.target.value})}
           required
         />
       </div>
@@ -37,8 +49,8 @@ const Login = () => {
           type="password"
           id="password"
           placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={state.password}
+          onChange={(e) =>dispatch({type:'password',payload:e.target.value})}
           required
         />
       </div>
